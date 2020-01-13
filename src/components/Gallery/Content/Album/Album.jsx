@@ -3,11 +3,11 @@ import classes from './Album.module.scss';
 import AlbumInformation from './AlbumInformation';
 import AlbumPhotos from './AlbumPhotos';
 
-const Album = () => {
+const Album = (props) => {
   return (
     <div className={classes.galleryItem}>
-      <AlbumInformation />
-      <AlbumPhotos />
+      <AlbumInformation {...props} />
+      <AlbumPhotos id = {props.id}/>
     </div>
   )
 };

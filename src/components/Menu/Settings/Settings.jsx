@@ -6,8 +6,8 @@ import Categories from './Categories';
 const Settings = () => {
   return (
     <div className={classes.settings}>
-      <Search/>
-      <Categories/>
+      <Search />
+      <Categories />
     </div>
   )
 };

@@ -1,14 +1,14 @@
 import React from 'react';
 import classes from './AlbumInformation.module.scss';
 
-const AlbumInformation = () => {
+const AlbumInformation = ({name, year, countPhotos}) => {
   return (
     <div className={classes.galleryItemTitle}>
       <div className={classes.galleryItemName}>
-        Subcorpathia 2020
+        {name} {year}
       </div>
       <div className={classes.galleryItemPhotos}>
-        (<span>8</span> photos)
+        (<span>{countPhotos}</span> photos)
       </div>
     </div>
   )

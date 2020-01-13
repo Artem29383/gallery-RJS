@@ -4,14 +4,20 @@ import Profile from './Profile/Profile';
 import Settings from './Settings';
 import Zoomer from './Zoomer';
 
-const Menu = ({shift}) => {
+const Menu = ({ shift, menu }) => {
   return (
-    <div className={classes.menuWrapper} style={{transform: `translateX(${shift}px`}}>
+    <div
+      ref={menu}
+      className={classes.menuWrapper}
+      style={((shift || shift === 0)
+        ? { transform: `translateX(${shift}px` }
+        : null)}
+    >
       <div className={classes.menu}>
-      <Profile/>
-      <Settings/>
+        <Profile />
+        <Settings />
       </div>
-      <Zoomer/>
+      <Zoomer />
     </div>
   )
 };

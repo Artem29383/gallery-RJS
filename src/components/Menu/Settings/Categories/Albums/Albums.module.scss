@@ -33,6 +33,14 @@
       padding: 10px 0 10px 33px;
     }
   }
+  &.active {
+    background-color: #19181e;
+    border-left: 2px solid #ea5a5a;
+    & .listLink {
+      color: #d6d5df;
+      padding: 10px 0 10px 33px;
+    }
+  }
 }
 
 .listLink {

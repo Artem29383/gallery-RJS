@@ -1,6 +1,8 @@
-import React from 'react';
+import React  from 'react';
 import classes from './Albums.module.scss';
 import Plus from '../../../../../svg/Plus';
+import PhotosAlbumList from './PhotosAlbumList';
+import { Route } from 'react-router-dom';
 
 const Albums = () => {
   return (
@@ -10,32 +12,13 @@ const Albums = () => {
             <span className={classes.albumsTitleText}>
               albums
             </span>
-          <Plus/>
+          <Plus />
         </div>
       </div>
       <div>
-        <ul className={classes.lists}>
-          <li className={classes.listItem}>
-            <a href='/#' className={classes.listLink}>
-              Subcarpathia 2020
-            </a>
-          </li>
-          <li className={classes.listItem}>
-            <a href='/#' className={classes.listLink}>
-              Summer 2018
-            </a>
-          </li>
-          <li className={classes.listItem}>
-            <a href='/#' className={classes.listLink}>
-              Aspen 2015
-            </a>
-          </li>
-          <li className={classes.listItem}>
-            <a href='/#' className={classes.listLink}>
-              Croatia 2015
-            </a>
-          </li>
-        </ul>
+        <Route path='/photos' component={PhotosAlbumList} />
+        <Route path='/videos' component={null} />
+        <Route path='/projects' component={null} />
       </div>
     </div>
   )

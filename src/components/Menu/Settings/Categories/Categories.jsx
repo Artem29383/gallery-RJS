@@ -1,6 +1,10 @@
 import React from 'react';
 import classes from './Categories.module.scss';
 import Albums from './Albums';
+import {
+  NavLink,
+  Route
+} from 'react-router-dom';
 
 const Categories = () => {
   return (
@@ -11,25 +15,27 @@ const Categories = () => {
       <nav>
         <ul className={classes.options}>
           <li className={classes.optionsItem}>
-            <a href='/#' className={classes.optionsLink}>
+            <NavLink to='/photos' className={classes.optionsLink}>
               Photos
-            </a>
+            </NavLink>
           </li>
           <li className={classes.optionsItem}>
-            <a href='/#' className={classes.optionsLink}>
+            <NavLink to='/videos' className={classes.optionsLink}>
               Videos
-            </a>
+            </NavLink>
           </li>
           <li className={classes.optionsItem}>
-            <a href='/#' className={classes.optionsLink}>
+            <NavLink to='/projects' className={classes.optionsLink}>
               Projects
-            </a>
+            </NavLink>
           </li>
         </ul>
       </nav>
       
-      <Albums/>
       
+      <Route path={['/photos', '/videos', '/projects']} component={Albums} />
+    
+    
     </div>
   )
 };
