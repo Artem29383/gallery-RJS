@@ -1,0 +1,25 @@
+.searchFiles {
+  width: 100%;
+  background: #1e1d26;
+  border: none;
+  color: #ea5a5a;
+  font-size: 16px;
+  padding: 20px 20px 20px 50px;
+  background: url("./../../../../assets/search.svg") no-repeat 10px;
+  background-size: 30px;
+  border-bottom: 2px solid #111111;
+
+  &::placeholder {
+    color: #3a3a3c;
+    font-size: inherit;
+  }
+
+  &:focus {
+    background: url("./../../../../assets/search2.svg") no-repeat 10px;
+    background-size: 30px;
+
+    &::placeholder {
+      color: inherit;
+    }
+  }
+}

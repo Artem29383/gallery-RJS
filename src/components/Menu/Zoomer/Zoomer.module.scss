@@ -1,0 +1,108 @@
+.zoomer {
+  height: 60px;
+  background-color: #19181e;
+  border-top: 2px solid #111111;
+  padding: 15px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.zoomerWrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.zommerIconSmall {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  padding: 1px;
+  border: 1.5px solid #ea5a5a;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 1px;
+}
+
+.zoomerSmallItem {
+  background-color: #ea5a5a;
+}
+
+.zoomerIconBigger {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  padding: 2px;
+  border: 1.5px solid #ea5a5a;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 2px;
+}
+
+.zoomerBiggerItem {
+  border: solid 1px #ea5a5a;
+}
+
+
+.zoomerSlider {
+  background: #111111;
+  border-radius: 10px;
+  height: 5px;
+  position: relative;
+  width: 100px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.inputRange {
+  position: absolute;
+  width: 100%;
+  background: transparent;
+  left: 0;
+  top: -3px;
+  z-index: 9;
+  cursor: pointer;
+  outline: none;
+  opacity: 0;
+}
+
+.inputRange::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+
+.progressSliderLine {
+  width: 0;
+  border-radius: 10px;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  background-color: #272631;
+}
+
+.sliderDot {
+  left: 0;
+  background: #ea5a5a;
+  border-radius: 100%;
+  cursor: pointer;
+  height: 13px;
+  position: absolute;
+  top: -4px;
+  touch-action: none;
+  width: 13px;
+
+  &::before {
+    bottom: -10px;
+    content: "";
+    left: -10px;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+  }
+}

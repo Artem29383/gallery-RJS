@@ -1,0 +1,44 @@
+.albumsTitle {
+  padding: 40px 0 20px 20px;
+}
+
+.albumsText {
+  display: flex;
+}
+
+.albumsTitleText {
+  text-transform: uppercase;
+  display: block;
+  font-size: 16px;
+  color: #d6d5df;
+  width: 80%;
+}
+
+.lists {
+  height: 100%;
+}
+
+.listItem {
+  height: 100%;
+  display: block;
+  transition: border-color .2s linear, background-color .2s linear;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #19181e;
+    border-left: 2px solid #ea5a5a;
+
+    & .listLink {
+      color: #d6d5df;
+      padding: 10px 0 10px 33px;
+    }
+  }
+}
+
+.listLink {
+  display: block;
+  font-size: 14px;
+  color: #a3a2a8;
+  text-decoration: none;
+  padding: 10px 0 10px 35px;
+}

@@ -1,0 +1,36 @@
+.title {
+  font-size: 16px;
+  color: #d6d5df;
+  font-family: Helvetica_Bold;
+  padding: 40px 0 20px 20px;
+  text-transform: uppercase;
+}
+
+.options {
+  height: 100%;
+}
+
+.optionsItem {
+  height: 100%;
+  display: block;
+  transition: border-color .2s linear, background-color .2s linear;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #19181e;
+    border-left: 2px solid #ea5a5a;
+
+    & .optionsLink {
+      color: #d6d5df;
+      padding: 10px 0 10px 33px;
+    }
+  }
+}
+
+.optionsLink {
+  display: block;
+  font-size: 14px;
+  color: #a3a2a8;
+  text-decoration: none;
+  padding: 10px 0 10px 35px;
+}

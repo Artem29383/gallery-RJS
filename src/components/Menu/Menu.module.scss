@@ -1,0 +1,26 @@
+.menuWrapper {
+  height: 100vh;
+  position: relative;
+}
+
+.menu {
+  height: 100%;
+  background-color: #1e1d26;
+  overflow-y: scroll;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.menu::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+@media (max-width: 801px) {
+  .menuWrapper {
+    z-index: 100;
+    width: 220px;
+    transition: transform .2s linear;
+    transform: translateX(-220px);
+  }
+}
