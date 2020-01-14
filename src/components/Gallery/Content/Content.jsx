@@ -1,18 +1,25 @@
 import React, { Fragment } from 'react';
-import Album from './Album';
-import useSelector from '../../../hooks/useSelector';
-import { getAlbumsIdsSelector, getAlbumsPhotosSelector } from '../../../models/gallery/selectors';
+import AlbumPhotos from './AlbumPhotos/AlbumPhotos';
+import {
+  Redirect,
+  Route,
+  Switch
+} from 'react-router-dom';
+import StartPage from '../../StartPage';
+import CreateAlbum from '../../CreateAlbum';
 
 const Content = () => {
-  const albums = useSelector(getAlbumsPhotosSelector);
-  const ids = useSelector(getAlbumsIdsSelector);
-  const id = ids.filter(id => albums[id].isActive).length === 0 ? false : ids.filter(id => albums[id].isActive);
   return (
     <Fragment>
-      {id
-        ? <Album id={id} name={albums[id].name} year={albums[id].year} countPhotos={albums[id].countPhotos} />
-        : null
-      }
+      <Switch>
+        <Route exact path='/' render={() => <h1>Добро пожаловать в галерею, здесь вы сможете размещать свои проекты, видео, фото и делиться ими</h1>}/>
+        <Route exact path='/photos' component={StartPage}/>
+        <Route exact path='/photos/create' component={CreateAlbum}/>
+        <Route exact path='/photos/:id?'  component={AlbumPhotos} />
+        <Route exact path='/videos/:id?' render={() => <h1>Videos</h1>} />
+        <Route exact path='/projects/:id?' render={() => <h1>Projects</h1>} />
+        <Redirect to='/' />
+      </Switch>
     </Fragment>
   )
 };

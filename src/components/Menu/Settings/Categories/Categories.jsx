@@ -15,17 +15,17 @@ const Categories = () => {
       <nav>
         <ul className={classes.options}>
           <li className={classes.optionsItem}>
-            <NavLink to='/photos' className={classes.optionsLink}>
+            <NavLink activeClassName={classes.active} to='/photos' className={classes.optionsLink}>
               Photos
             </NavLink>
           </li>
           <li className={classes.optionsItem}>
-            <NavLink to='/videos' className={classes.optionsLink}>
+            <NavLink activeClassName={classes.active} to='/videos' className={classes.optionsLink}>
               Videos
             </NavLink>
           </li>
           <li className={classes.optionsItem}>
-            <NavLink to='/projects' className={classes.optionsLink}>
+            <NavLink activeClassName={classes.active} to='/projects' className={classes.optionsLink}>
               Projects
             </NavLink>
           </li>

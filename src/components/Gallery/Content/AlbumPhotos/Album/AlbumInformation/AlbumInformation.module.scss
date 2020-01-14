@@ -1,0 +1,40 @@
+.galleryItemTitle {
+  display: flex;
+  max-width: 280px;
+  margin-bottom: 20px;
+}
+
+.galleryItemName {
+  font-size: 22px;
+  color: #444444;
+  margin-right: 5px;
+}
+
+.galleryItemPhotos {
+  font-size: 14px;
+  color: #c0c0c0;
+  font-family: Helvetica_Light;
+  margin-top: auto;
+}
+
+
+/* media start */
+
+@media (max-width: 390px) {
+  .galleryItemName {
+    font-size: 20px;
+  }
+
+  .galleryItemPhotos {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 350px) {
+  .galleryItemTitle {
+    display: block;
+  }
+  .galleryItemPhotos {
+    margin-top: 5px;
+  }
+}

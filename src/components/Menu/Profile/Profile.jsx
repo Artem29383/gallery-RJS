@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Profile.module.scss';
 import StandartUserPhoto from './../../../assets/standart_profile-user.png'
+import Button from '../../../ui/Button/Button';
 
 const Profile = () => {
   return (
@@ -14,9 +15,7 @@ const Profile = () => {
       <div className={classes.userCountFiles}>
         2390 files
       </div>
-      <button className={classes.uploadBtn}>
-        upload
-      </button>
+      <Button text='upload'/>
     </div>
   )
 };

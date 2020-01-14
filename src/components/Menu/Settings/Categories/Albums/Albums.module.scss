@@ -21,6 +21,7 @@
 .listItem {
   height: 100%;
   display: block;
+  position: relative;
   transition: border-color .2s linear, background-color .2s linear;
   cursor: pointer;
 
@@ -28,20 +29,34 @@
     background-color: #19181e;
     border-left: 2px solid #ea5a5a;
 
+    & .active {
+      border-left: none;
+    }
+
     & .listLink {
       color: #d6d5df;
       padding: 10px 0 10px 33px;
     }
+    & .remove {
+      opacity: 1;
+    }
   }
-  &.active {
+
+  & .active {
     background-color: #19181e;
     border-left: 2px solid #ea5a5a;
-    & .listLink {
+
+    &.listLink {
       color: #d6d5df;
       padding: 10px 0 10px 33px;
+    }
+
+    & + .remove {
+      opacity: 1;
     }
   }
 }
+
 
 .listLink {
   display: block;
@@ -49,4 +64,18 @@
   color: #a3a2a8;
   text-decoration: none;
   padding: 10px 0 10px 35px;
+}
+
+.remove {
+  position: absolute;
+  color: #ea5a5a;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 5px;
+  z-index: 100;
+  cursor: pointer;
+  font-size: 25px;
+  opacity: 0;
+  transition: opacity .2s linear;
+  text-decoration: none;
 }
