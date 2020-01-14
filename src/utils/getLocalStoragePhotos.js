@@ -13,85 +13,21 @@ export const getLocalStoragePhotos = () => {
         albumPhotos: [
           {
             id: 1,
-            content: 'photo'
+            img: 'red',
+            dateCreated: '14.01.2020',
+            localeTime: '15:40'
           },
           {
             id: 2,
-            content: 'photo'
+            img: 'pink',
+            dateCreated: '14.01.2020',
+            localeTime: '15:40'
           },
           {
             id: 3,
-            content: 'photo'
-          },
-          {
-            id: 4,
-            content: 'photo'
-          },
-          {
-            id: 5,
-            content: 'photo'
-          },
-          {
-            id: 6,
-            content: 'photo'
-          },
-          {
-            id: 7,
-            content: 'photo'
-          },
-          {
-            id: 8,
-            content: 'photo'
-          },
-          {
-            id: 9,
-            content: 'photo'
-          },
-          {
-            id: 10,
-            content: 'photo'
-          }
-        ],
-        isActive: false
-      },
-      {
-        id: 2,
-        year: 2018,
-        name: 'Summer',
-        size: 4,
-        countPhotos: 8,
-        albumPhotos: [
-          {
-            id: 1,
-            content: 'photo'
-          },
-          {
-            id: 2,
-            content: 'photo'
-          },
-          {
-            id: 3,
-            content: 'photo'
-          },
-          {
-            id: 4,
-            content: 'photo'
-          },
-          {
-            id: 5,
-            content: 'photo'
-          },
-          {
-            id: 6,
-            content: 'photo'
-          },
-          {
-            id: 7,
-            content: 'photo'
-          },
-          {
-            id: 8,
-            content: 'photo'
+            img: 'yellow',
+            dateCreated: '14.01.2020',
+            localeTime: '15:40'
           }
         ],
         isActive: false

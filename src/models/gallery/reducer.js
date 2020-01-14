@@ -3,13 +3,16 @@ import {
   schema
 } from 'normalizr';
 import {
+  ADD_PHOTO,
   CREATE_NEW_ALBUM,
-  GET_CHOOSE_ALBUM,
-  NORMALIZE_ALBUM_PHOTO,
+  NORMALIZE_ALBUM_PHOTO, REMOVE_ALBUM,
   SET_INIT, SET_SIZE_PHOTO
 } from './action';
 import deepCopy from '../../utils/deepCopy';
 import { albumsNormalizr } from '../../utils/normalizr';
+import { removePropFromObject } from '../../utils/removePropFromObject';
+import { removeArrayElement } from '../../utils/removeArrayElement';
+
 
 const { albums, ids } = albumsNormalizr();
 
@@ -23,41 +26,8 @@ const initialState = {
   init: false
 };
 
-
-/*const alb = {
-  photos: {
-  
-  }
-};
-
-const id = 5;
-alb.photos.photo = {1: {id: 1}};
-alb.photos.photo = {...alb.photos.photo, 2: {id: 2}};
-alb.photos.photo = {...alb.photos.photo, [id]: {id: 3}};
-console.log(alb.photos);
-*/
-
-
 const galleryReducer = (state = initialState, action) => {
   switch (action.type) {
-    
-    case GET_CHOOSE_ALBUM: {
-      const { id, isActive } = action.payload;
-      const {albums, ids} = deepCopy(state.photos);
-      ids.forEach(i => {
-        i === id
-          ? albums[i].isActive = !isActive
-          : albums[i].isActive = false
-      });
-      
-      return {
-        ...state,
-        photos: {
-          albums, ids
-        }
-      }
-    }
-    
     
     case NORMALIZE_ALBUM_PHOTO: {
       const id = action.payload;
@@ -87,6 +57,29 @@ const galleryReducer = (state = initialState, action) => {
         }
       };
     }
+    
+    
+    
+    case REMOVE_ALBUM: {
+      const {albums, ids} = deepCopy(state.photos);
+      return {
+        ...state,
+        photos: {
+          ...state.photos,
+          albums: removePropFromObject(albums, action.payload),
+          ids: removeArrayElement(ids, action.payload)
+        }
+      };
+    }
+    
+    
+    case ADD_PHOTO: {
+      const {albums} = action.payload;
+      const ids = deepCopy(state.photos.ids);
+      
+      return {...state, photos: {albums, ids}};
+    }
+    
     
     
     case SET_SIZE_PHOTO: {

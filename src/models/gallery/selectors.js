@@ -26,4 +26,4 @@ export const getInit = state => {
 
 export const getAlbumsPhotosSelector = createSelector([getAlbumsPhotos], albums => albums);
 export const getAlbumsIdsSelector = createSelector([getAlbumsId], ids => ids);
-export const getDotsSelector = createSelector([getDots], dotX => dotX);
+export const getDotsSelector = createSelector([getDots], sizeAlbums => sizeAlbums);
