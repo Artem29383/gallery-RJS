@@ -3,7 +3,7 @@ import {
   schema
 } from 'normalizr';
 import {
-  ADD_PHOTO,
+  ADD_PHOTO, CHANGE_ALBUM_NAME,
   CREATE_NEW_ALBUM,
   NORMALIZE_ALBUM_PHOTO, REMOVE_ALBUM,
   SET_INIT, SET_SIZE_PHOTO
@@ -31,7 +31,7 @@ const galleryReducer = (state = initialState, action) => {
     
     case NORMALIZE_ALBUM_PHOTO: {
       const id = action.payload;
-      const {albums, ids} = deepCopy(state.photos);
+      const { albums, ids } = deepCopy(state.photos);
       const photosSchema = new schema.Entity('albumPhotos');
       const photoListSchema = [photosSchema];
       const dataNormalized = normalize(albums[id].albumPhotos, photoListSchema);
@@ -47,7 +47,7 @@ const galleryReducer = (state = initialState, action) => {
     
     case CREATE_NEW_ALBUM: {
       const { id, year, name } = action.payload;
-      const {albums, ids} = deepCopy(state.photos);
+      const { albums, ids } = deepCopy(state.photos);
       albums[id] = { id, year, name, countPhotos: 0, albumPhotos: [], isActive: false };
       ids.push(id);
       return {
@@ -59,9 +59,8 @@ const galleryReducer = (state = initialState, action) => {
     }
     
     
-    
     case REMOVE_ALBUM: {
-      const {albums, ids} = deepCopy(state.photos);
+      const { albums, ids } = deepCopy(state.photos);
       return {
         ...state,
         photos: {
@@ -74,12 +73,23 @@ const galleryReducer = (state = initialState, action) => {
     
     
     case ADD_PHOTO: {
-      const {albums} = action.payload;
+      const { albums } = action.payload;
       const ids = deepCopy(state.photos.ids);
       
-      return {...state, photos: {albums, ids}};
+      return { ...state, photos: { albums, ids } };
     }
     
+    
+    case CHANGE_ALBUM_NAME: {
+      const { id, newName } = action.payload;
+      const { albums, ids } = deepCopy(state.photos);
+      albums[id].name = newName;
+      return {
+        ...state, photos: {
+          albums, ids
+        }
+      };
+    }
     
     
     case SET_SIZE_PHOTO: {
@@ -96,7 +106,7 @@ const galleryReducer = (state = initialState, action) => {
     
     
     default: {
-      return { ...state };
+      return state;
     }
   }
   

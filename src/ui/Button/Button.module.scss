@@ -16,3 +16,10 @@
   font-size: 16px;
   margin-left: 20px;
 }
+
+.photoFrameBtn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
