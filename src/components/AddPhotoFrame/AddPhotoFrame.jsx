@@ -1,15 +1,21 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import classes from './AddPhotoFrame.module.scss';
 import Button from '../../ui/Button/Button';
+import Input from '../../ui/Input/Input';
 
 const AddPhotoFrame = ({ setShowHandler, addPhoto }) => {
   
   const [http, setHttp] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState(false);
+  const [desc, setDesc] = useState('');
+  const [keyWords, setKeyWords] = useState('');
+  const frame = useRef();
   
-  const closeFrame = () => {
-    setShowHandler(false);
+  const closeFrame = e => {
+    if (frame.current === e.target) {
+      setShowHandler(false);
+    }
   };
   
   
@@ -29,43 +35,51 @@ const AddPhotoFrame = ({ setShowHandler, addPhoto }) => {
   }, [name, setName]);
   
   
-  const submit = useCallback(e => {
-    if ((e.key === 'Enter' || e.type === 'click') && http.trim()) {
+  const descHandler = useCallback(e => {
+    setDesc(e.currentTarget.value);
+  }, [desc, setDesc]);
+  
+  const keyHandler = useCallback(e => {
+    setKeyWords(e.currentTarget.value);
+  }, [keyWords, setKeyWords]);
+  
+  
+  const submit = e => {
+    if ((e.key === 'Enter' || e.type === 'click') && http.trim() && name.trim()) {
       const regExp = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/;
       const isValid = regExp.test(http);
       if (isValid) {
-        addPhoto(http, name);
+        addPhoto(http, name, desc, keyWords);
         setHttp('');
         setName('');
+        setDesc('');
+        setKeyWords('');
       } else {
         setHttp('');
         setName('');
+        setDesc('');
+        setKeyWords('');
         setError(true);
       }
     }
-  }, [http, name]);
+  };
   
   return (
-    <div className={classes.photoAddFrame}>
-      <div className={classes.frameContent}>
-        <div className={classes.title}>Добавить новое фото</div>
-        <div className={classes.frameText}>
-          <div className={classes.group}>
-            <input value={http} onChange={httpHandler} placeholder=' ' onKeyDown={submit} className={classes.frameInput}
-                   type="text" />
-            <span className={classes.bar} />
-            <label className={classes.label}>Ссылка на фото</label>
+    <div className={classes.frame} ref={frame} onClick={closeFrame}>
+      <div className={classes.photoAddFrame}>
+        <div className={classes.frameContent}>
+          <div className={classes.title}>Добавить новое фото</div>
+          <div className={classes.frameText}>
+            <Input fn={submit} value={http} desc='Ссылка на фото' handler={httpHandler} classN='margin' />
             {error && <span className={classes.error}>Попробуйте другую ссылку</span>}
+            <Input fn={submit} value={name} desc='Название' handler={nameHandler} classN='margin' />
+            <Input fn={submit} value={desc} desc='Описание (необязательно)' handler={descHandler} classN='margin' />
+            <Input fn={submit} value={keyWords} desc='Ключевые слова (необязательно)' handler={keyHandler}
+                   classN='margin' />
           </div>
-          <div className={classes.group}>
-            <input value={name} onChange={nameHandler} placeholder=' ' onKeyDown={submit} className={classes.frameInput}
-                   type="text" />
-            <span className={classes.bar} />
-            <label className={classes.label}>Название (необязательно)</label>
-          </div>
+          <Button text='Добавить' classN='photoFrameBtn' fn={submit} />
+          <span className={classes.closeFramePhoto}  onClick={() => setShowHandler(false)}>✖</span>
         </div>
-        <Button text='Добавить' classN='photoFrameBtn' fn={submit} />
-        <span className={classes.closeFramePhoto} onClick={closeFrame}>✖</span>
       </div>
     </div>
   )

@@ -1,10 +1,11 @@
 import React from 'react';
 import classes from './PhotoItem.module.scss';
+import { NavLink } from 'react-router-dom';
 
 
-const PhotoItem = ({ img, date, localeTime, name }) => {
+const PhotoItem = ({ idAlbum, idImg, img, date, localeTime, name, desc, keyWords, getImg }) => {
   return (
-    <div className={classes.galleryPhotoItem}>
+    <NavLink to = {`/photos/${idAlbum}/photo/${idImg}`} className={classes.galleryPhotoItem} onClick={() => getImg(img, name, desc, keyWords )}>
       <div className={classes.photoItem}>
         <img src={img} className={classes.albumPhotoItem} />
         <div className={classes.photoItemInfo}>
@@ -15,7 +16,7 @@ const PhotoItem = ({ img, date, localeTime, name }) => {
       <div className={classes.photoDataPublication}>
         {date}
       </div>
-    </div>
+    </NavLink>
   )
 };
 

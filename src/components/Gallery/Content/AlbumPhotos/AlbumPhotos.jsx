@@ -1,8 +1,14 @@
 import React, { Fragment } from 'react';
 import useSelector from '../../../../hooks/useSelector';
-import { getAlbumsIdsSelector, getAlbumsPhotosSelector } from '../../../../models/gallery/selectors';
+import {
+  getAlbumsIdsSelector,
+  getAlbumsPhotosSelector
+} from '../../../../models/gallery/selectors';
 import Album from './Album';
-import { Redirect, useParams } from 'react-router-dom';
+import {
+  Redirect,
+  useParams
+} from 'react-router-dom';
 
 
 const AlbumPhotos = () => {

@@ -19,23 +19,34 @@ const Photos = ({ id }) => {
   const ids = albums[id].albumPhotos.ids;
   const addNewPhoto = useAction(ADD_PHOTO);
   
+  const getImg = (img, name, desc, keys) => {
+/*
+    setPicture({img, name, desc, keys, id});
+*/
+  };
   
-  const photos = ids.map(id => <PhotoItem
-    key={album[id].id}
-    img={album[id].img}
-    date={album[id].dateCreated}
-    localeTime={album[id].localeTime}
-    name={album[id].name}
+  
+  const photos = ids.map(idImg => <PhotoItem
+    key={album[idImg].id}
+    idAlbum={id}
+    idImg={idImg}
+    img={album[idImg].img}
+    date={album[idImg].dateCreated}
+    localeTime={album[idImg].localeTime}
+    name={album[idImg].name}
+    desc = {album[idImg].desc}
+    keyWords = {album[idImg].keyWords}
+    getImg={getImg}
   />);
   
-  const addPhoto = (img, name) => {
+  const addPhoto = (img, name, desc, keyWords) => {
     const uniqId = Date.now();
     const date = new Date();
     const dateCreated = `${date.getDate()}.${date.getMonth() > 9 ? date.getMonth() : '0' + (date.getMonth() + 1)}.${date.getFullYear()}`;
     const localeTime = `${date.getHours()}:${date.getMinutes()}`;
     albums[id].albumPhotos.photos = {
       ...albums[id].albumPhotos.photos,
-      [uniqId]: { id: uniqId, img, dateCreated, localeTime, name }
+      [uniqId]: { id: uniqId, img, dateCreated, localeTime, name, desc, keyWords }
     };
     albums[id].albumPhotos.ids.push(uniqId);
     addNewPhoto({ albums, id });
@@ -43,15 +54,14 @@ const Photos = ({ id }) => {
   
   
   const gridColumnSize = grid => {
-    if (grid === '0') return `repeat(4, 1fr)`;
-    if (grid === '1') return `repeat(3, 1fr)`;
-    if (grid === '2') return `repeat(2, 1fr)`;
-    if (grid === '3') return `repeat(1, 1fr)`;
+    if (grid === '0') return { gridTemplateColumns: 'repeat(4, 1fr)', gridAutoRows: 'minmax(auto, 200px)' };
+    if (grid === '1') return { gridTemplateColumns: 'repeat(3, 1fr)', gridAutoRows: 'minmax(auto, 400px)' };
+    if (grid === '2') return { gridTemplateColumns: 'repeat(2, 1fr)', gridAutoRows: 'minmax(auto, 600px)' };
+    if (grid === '3') return { gridTemplateColumns: 'repeat(1, 1fr)', gridAutoRows: 'minmax(auto, auto)' };
   };
   
-  const cssStyles = {
-    gridTemplateColumns: gridColumnSize(grid)
-  };
+  const cssStyles = gridColumnSize(grid);
+  
   return (
     <div className={classes.galleryContent}>
       <div className={classes.galleryPhoto} style={cssStyles}>
@@ -60,7 +70,7 @@ const Photos = ({ id }) => {
       <div className={classes.add} onClick={() => setShowHandler(true)}>
         <span className={classes.plus}>+</span>
       </div>
-      {showHandler && <AddPhotoFrame setShowHandler = {setShowHandler} addPhoto = {addPhoto} />}
+      {showHandler && <AddPhotoFrame setShowHandler={setShowHandler} addPhoto={addPhoto} />}
     </div>
   )
 };

@@ -106,3 +106,10 @@
     top: -10px;
   }
 }
+
+
+@media (max-width: 801px) {
+  .zoomer {
+    display: none;
+  }
+}

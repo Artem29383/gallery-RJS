@@ -17,17 +17,12 @@
 }
 
 
-.fieldForAlbum {
-  width: 400px;
-  border: none;
-  box-shadow: 0px 0px 13px 3px rgba(0,0,0,0.75);
-  border-radius: 20px;
-  padding: 10px 10px 10px 20px;
-  font-size: 20px;
-  &::placeholder {
-    font-size: 16px;
-  }
+.gr {
+  display: flex;
+  justify-content: center;
 }
+
+
 
 
 .back {

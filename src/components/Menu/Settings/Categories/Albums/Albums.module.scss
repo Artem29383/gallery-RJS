@@ -70,9 +70,10 @@
   position: absolute;
   color: #ea5a5a;
   top: 50%;
+  width: 20px;
+  height: 20px;
   transform: translateY(-50%);
   left: 5px;
-  z-index: 100;
   cursor: pointer;
   font-size: 25px;
   opacity: 0;

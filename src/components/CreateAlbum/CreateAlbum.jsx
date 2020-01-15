@@ -4,6 +4,7 @@ import useAction from '../../hooks/useAction';
 import { CREATE_NEW_ALBUM } from '../../models/gallery/action';
 import { NavLink } from 'react-router-dom';
 import Button from '../../ui/Button/Button';
+import Input from '../../ui/Input/Input';
 
 const CreateAlbum = () => {
   const createHandler = useAction(CREATE_NEW_ALBUM);
@@ -17,6 +18,7 @@ const CreateAlbum = () => {
         year: data.getFullYear(),
         name: name
       });
+      setName('');
     }
   };
   
@@ -36,16 +38,10 @@ const CreateAlbum = () => {
             ✖
           </NavLink>
         </div>
-        <input
-          type="text"
-          className={classes.fieldForAlbum}
-          placeholder='Название альбома. Например: Summer'
-          value={name}
-          autoFocus
-          onChange={nameHandler}
-          onKeyDown={createNewAlbum}
-        />
-        <Button text='создать' classN='createAlbum' fn={createNewAlbum}/>
+        <div className={classes.gr}>
+          <Input handler={nameHandler} value={name} classN='styleInput' fn={createNewAlbum} desc='Название альбома' />
+          <Button text='создать' classN='createAlbum' fn={createNewAlbum} />
+        </div>
       </div>
     </div>
   )
