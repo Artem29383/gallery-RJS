@@ -2,20 +2,18 @@ import React from 'react';
 import classes from './PhotoItem.module.scss';
 
 
-const PhotoItem = () => {
+const PhotoItem = ({ img, date, localeTime, name }) => {
   return (
     <div className={classes.galleryPhotoItem}>
       <div className={classes.photoItem}>
-        <div className={classes.albumPhotoItem} />
+        <img src={img} className={classes.albumPhotoItem} />
         <div className={classes.photoItemInfo}>
-          <div>5:40 PM</div>
-          <div>f/8</div>
-          <div>1/250</div>
-          <div className={classes.iso}>iso 400</div>
+          <div>{localeTime}</div>
+          <div>{name}</div>
         </div>
       </div>
       <div className={classes.photoDataPublication}>
-        25.02.2020
+        {date}
       </div>
     </div>
   )

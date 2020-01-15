@@ -7,7 +7,7 @@ const StartPage = () => {
     <div className={classes.newAlbum}>
       <div className={classes.info}>
         <div className={classes.title}>
-          <span className={classes.welcome}>Добро пожаловать.</span>
+          <span className={classes.welcome}>Раздел фото</span>
           Выберите существующий альбом или создайте новый.
         </div>
         <Navigation  text='Создать альбом' classN='btns' path = '/photos/create'/>

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useState } from 'react';
 import classes from './Photos.module.scss';
 import PhotoItem from './PhotoItem';
 import useSelector from '../../../../../../hooks/useSelector';
@@ -8,29 +8,38 @@ import {
 } from '../../../../../../models/gallery/selectors';
 import useAction from '../../../../../../hooks/useAction';
 import { ADD_PHOTO } from '../../../../../../models/gallery/action';
+import AddPhotoFrame from '../../../../../AddPhotoFrame';
 
 const Photos = ({ id }) => {
+  const [showHandler, setShowHandler] = useState(false);
+  
   const grid = useSelector(getDotsSelector);
-  
-  
   const albums = useSelector(getAlbumsPhotosSelector);
   const album = albums[id].albumPhotos.photos;
   const ids = albums[id].albumPhotos.ids;
-  const photos = ids.map(id => <PhotoItem key={album[id].id} />);
   const addNewPhoto = useAction(ADD_PHOTO);
   
-  const addPhoto = () => {
+  
+  const photos = ids.map(id => <PhotoItem
+    key={album[id].id}
+    img={album[id].img}
+    date={album[id].dateCreated}
+    localeTime={album[id].localeTime}
+    name={album[id].name}
+  />);
+  
+  const addPhoto = (img, name) => {
     const uniqId = Date.now();
     const date = new Date();
-    const dateCreated = `${date.getDate()}.${date.getMonth() > 9 ? date.getMonth() : '0' + (date.getMonth()+1)}.${date.getFullYear()}`;
-    const localTime = `${date.getHours()}:${date.getMinutes()}`;
-    albums[id].albumPhotos.photos = {...albums[id].albumPhotos.photos, [uniqId] : {id: uniqId, img: 'gold', dateCreated, localTime}};
+    const dateCreated = `${date.getDate()}.${date.getMonth() > 9 ? date.getMonth() : '0' + (date.getMonth() + 1)}.${date.getFullYear()}`;
+    const localeTime = `${date.getHours()}:${date.getMinutes()}`;
+    albums[id].albumPhotos.photos = {
+      ...albums[id].albumPhotos.photos,
+      [uniqId]: { id: uniqId, img, dateCreated, localeTime, name }
+    };
     albums[id].albumPhotos.ids.push(uniqId);
-    addNewPhoto({albums, id});
+    addNewPhoto({ albums, id });
   };
-  
-
-  
   
   
   const gridColumnSize = grid => {
@@ -44,14 +53,15 @@ const Photos = ({ id }) => {
     gridTemplateColumns: gridColumnSize(grid)
   };
   return (
-    <Fragment>
+    <div className={classes.galleryContent}>
       <div className={classes.galleryPhoto} style={cssStyles}>
         {photos}
       </div>
-        <div className={classes.add} onClick={addPhoto}>
-          <span className={classes.plus}>+</span>
-        </div>
-    </Fragment>
+      <div className={classes.add} onClick={() => setShowHandler(true)}>
+        <span className={classes.plus}>+</span>
+      </div>
+      {showHandler && <AddPhotoFrame setShowHandler = {setShowHandler} addPhoto = {addPhoto} />}
+    </div>
   )
 };
 

@@ -1,10 +1,12 @@
+.galleryContent {
+  position: relative;
+}
+
 .galleryPhoto {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 30px 20px;
 }
-
-
 
 
 .add {
@@ -19,6 +21,7 @@
   color: #ea5a5a;
   transition: box-shadow .2s linear;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
   &:hover {
     box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
 
@@ -35,6 +38,7 @@
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
 }
+
 
 
 @media (max-width: 1000px) {

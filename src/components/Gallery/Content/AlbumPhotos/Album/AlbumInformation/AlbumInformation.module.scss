@@ -1,10 +1,11 @@
 .galleryItemTitle {
   display: flex;
-  max-width: 280px;
+  max-width: 500px;
   margin-bottom: 20px;
 }
 
 .galleryItemName {
+  cursor: pointer;
   font-size: 22px;
   color: #444444;
   margin-right: 5px;
@@ -15,6 +16,15 @@
   color: #c0c0c0;
   font-family: Helvetica_Light;
   margin-top: auto;
+}
+
+.setName {
+  border: none;
+  border-bottom: 2px solid #ea5a5a;
+  margin-right: 20px;
+  padding-left: 10px;
+  font-family: Helvetica_Medium;
+  font-size: 25px;
 }
 
 

@@ -1,0 +1,121 @@
+.photoAddFrame {
+  z-index: 100;
+  width: 400px;
+  text-align: center;
+  color: #444;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0px 0px 12px 3px rgba(30, 29, 38, 1);
+  background-color: mistyrose;
+}
+
+.frameContent {
+  height: 100%;
+  width: 100%;
+}
+
+.title {
+  margin-top: 50px;
+}
+
+.frameText {
+  width: 100%;
+  margin-top: 30px;
+}
+
+
+.frameInput {
+  border: none;
+  background-color: transparent;
+  width: 85%;
+  font-size: 22px;
+  padding-left: 15px;
+  padding-bottom: 7px;
+  border-bottom: 2px solid #999;
+}
+
+.group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.frameInput:focus ~ .label, .frameInput:valid ~ .input, .frameInput:not(:placeholder-shown) ~ .label {
+  top: -15px;
+  font-size: 14px;
+  color: #ea5a5a;
+}
+
+.label {
+  font-size: 14px;
+  color: #999;
+  position: absolute;
+  pointer-events: none;
+  left: 40px;
+  top: 25px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.bar {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  width: 85%;
+}
+.bar:before, .bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 2px;
+  position: absolute;
+  background: #ea5a5a;
+  transition: 0.2s ease all;
+}
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
+
+/* active state */
+.frameInput:focus ~ .bar:before,
+.frameInput:focus ~ .bar:after, .input,
+.frameInput:not(:placeholder-shown) ~ .bar:after,
+.input, .frameInput:not(:placeholder-shown) ~ .bar:before {
+  width: 50%;
+}
+
+
+.error {
+  font-size: 17px;
+  top: 70px;
+  color: red;
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: Helvetica_Bold;
+}
+
+
+.closeFramePhoto {
+  position: absolute;
+  top: 10px;
+  color: #ea5a5a;
+  right: 30px;
+  transition: transform .35s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: rotate(360deg);
+  }
+}

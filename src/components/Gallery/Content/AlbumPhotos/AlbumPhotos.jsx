@@ -16,7 +16,7 @@ const AlbumPhotos = () => {
           id={id}
           name={albums[id].name}
           year={albums[id].year}
-          countPhotos={albums[id].countPhotos}
+          countPhotos={albums[id].albumPhotos.ids.length}
         />
         : <Redirect to = '/photos'/>
       }
