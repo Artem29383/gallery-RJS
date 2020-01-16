@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import classes from './Photos.module.scss';
 import PhotoItem from './PhotoItem';
 import useSelector from '../../../../../../hooks/useSelector';
 import {
   getAlbumsPhotosSelector,
-  getDotsSelector
+  getDotsSelector,
+  getSearchStr
 } from '../../../../../../models/gallery/selectors';
 import useAction from '../../../../../../hooks/useAction';
 import { ADD_PHOTO } from '../../../../../../models/gallery/action';
@@ -12,32 +13,35 @@ import AddPhotoFrame from '../../../../../AddPhotoFrame';
 
 const Photos = ({ id }) => {
   const [showHandler, setShowHandler] = useState(false);
-  
-  const grid = useSelector(getDotsSelector);
   const albums = useSelector(getAlbumsPhotosSelector);
-  const album = albums[id].albumPhotos.photos;
   const ids = albums[id].albumPhotos.ids;
+  const grid = useSelector(getDotsSelector);
+  const album = albums[id].albumPhotos.photos;
   const addNewPhoto = useAction(ADD_PHOTO);
-  
-  const getImg = (img, name, desc, keys) => {
-/*
-    setPicture({img, name, desc, keys, id});
-*/
-  };
+  const filter = useSelector(getSearchStr);
   
   
-  const photos = ids.map(idImg => <PhotoItem
-    key={album[idImg].id}
-    idAlbum={id}
-    idImg={idImg}
-    img={album[idImg].img}
-    date={album[idImg].dateCreated}
-    localeTime={album[idImg].localeTime}
-    name={album[idImg].name}
-    desc = {album[idImg].desc}
-    keyWords = {album[idImg].keyWords}
-    getImg={getImg}
-  />);
+  
+  const filteredPhoto = useCallback(() => {
+    // eslint-disable-next-line array-callback-return
+    return ids.map(idImg => {
+      if (album[idImg].name.toLowerCase().includes(filter.str)) {
+        return (<PhotoItem
+            key={album[idImg].id}
+            idAlbum={id}
+            idImg={idImg}
+            img={album[idImg].img}
+            date={album[idImg].dateCreated}
+            localeTime={album[idImg].localeTime}
+            name={album[idImg].name}
+            desc={album[idImg].desc}
+            keyWords={album[idImg].keyWords}
+          />
+        )
+      }
+    });
+  }, [filter.str, album, id, ids]);
+  
   
   const addPhoto = (img, name, desc, keyWords) => {
     const uniqId = Date.now();
@@ -65,7 +69,7 @@ const Photos = ({ id }) => {
   return (
     <div className={classes.galleryContent}>
       <div className={classes.galleryPhoto} style={cssStyles}>
-        {photos}
+        {filteredPhoto()}
       </div>
       <div className={classes.add} onClick={() => setShowHandler(true)}>
         <span className={classes.plus}>+</span>

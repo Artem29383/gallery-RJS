@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import AlbumPhotos from './AlbumPhotos/AlbumPhotos';
+import AlbumPhotos from './AlbumPhotos';
 import {
   Redirect,
   Route,
@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import StartPage from '../../StartPage';
 import CreateAlbum from '../../CreateAlbum';
-import ImgInfo from '../../ImgInfo/ImgInfo';
+import ImgInfo from '../../ImgInfo';
 
 const Content = () => {
   return (

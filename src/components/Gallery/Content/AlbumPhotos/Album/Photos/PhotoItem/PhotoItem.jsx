@@ -3,11 +3,11 @@ import classes from './PhotoItem.module.scss';
 import { NavLink } from 'react-router-dom';
 
 
-const PhotoItem = ({ idAlbum, idImg, img, date, localeTime, name, desc, keyWords, getImg }) => {
+const PhotoItem = ({ idAlbum, idImg, img, date, localeTime, name }) => {
   return (
-    <NavLink to = {`/photos/${idAlbum}/photo/${idImg}`} className={classes.galleryPhotoItem} onClick={() => getImg(img, name, desc, keyWords )}>
+    <NavLink to = {`/photos/${idAlbum}/photo/${idImg}`} className={classes.galleryPhotoItem}>
       <div className={classes.photoItem}>
-        <img src={img} className={classes.albumPhotoItem} />
+        <img src={img} alt= '' className={classes.albumPhotoItem} />
         <div className={classes.photoItemInfo}>
           <div>{localeTime}</div>
           <div>{name}</div>

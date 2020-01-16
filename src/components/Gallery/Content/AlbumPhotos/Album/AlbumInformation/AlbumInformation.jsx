@@ -10,11 +10,11 @@ const AlbumInformation = ({ id, name, year, countPhotos }) => {
   
   useEffect(() => {
     setAlbumName(name);
-  }, [id]);
+  }, [id, name]);
   
   const changeHandler = useCallback(e => {
     setAlbumName(e.currentTarget.value);
-  }, [albumName, setAlbumName]);
+  }, [setAlbumName]);
   
   const startEdit = () => {
     setEdit(true);

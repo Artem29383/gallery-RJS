@@ -6,7 +6,7 @@ import {
   ADD_PHOTO, CHANGE_ALBUM_NAME,
   CREATE_NEW_ALBUM,
   NORMALIZE_ALBUM_PHOTO, REMOVE_ALBUM,
-  SET_INIT, SET_SIZE_PHOTO
+  SET_INIT, SET_SEARCH, SET_SIZE_PHOTO
 } from './action';
 import deepCopy from '../../utils/deepCopy';
 import { albumsNormalizr } from '../../utils/normalizr';
@@ -23,6 +23,10 @@ const initialState = {
   videos: {},
   projects: {},
   sizeAlbums: 0,
+  search: {
+    str: '',
+    searchArea: ''
+  },
   init: false
 };
 
@@ -89,6 +93,16 @@ const galleryReducer = (state = initialState, action) => {
           albums, ids
         }
       };
+    }
+    
+    case SET_SEARCH: {
+      const { str, searchArea } = action.payload;
+      return {
+        ...state,
+        search: {
+          str, searchArea
+        }
+      }
     }
     
     

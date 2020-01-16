@@ -27,25 +27,26 @@ const AddPhotoFrame = ({ setShowHandler, addPhoto }) => {
   
   const httpHandler = useCallback(e => {
     setHttp(e.currentTarget.value);
-  }, [http, setHttp]);
+  }, [setHttp]);
   
   
   const nameHandler = useCallback(e => {
     setName(e.currentTarget.value);
-  }, [name, setName]);
+  }, [setName]);
   
   
   const descHandler = useCallback(e => {
     setDesc(e.currentTarget.value);
-  }, [desc, setDesc]);
+  }, [setDesc]);
   
   const keyHandler = useCallback(e => {
     setKeyWords(e.currentTarget.value);
-  }, [keyWords, setKeyWords]);
+  }, [setKeyWords]);
   
   
   const submit = e => {
     if ((e.key === 'Enter' || e.type === 'click') && http.trim() && name.trim()) {
+      // eslint-disable-next-line no-useless-escape
       const regExp = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/;
       const isValid = regExp.test(http);
       if (isValid) {
